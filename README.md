@@ -137,5 +137,5 @@ p =
 
     0.3750    0.3750    0.1250    0.1250
 ```
-on remarque que ce sont les memes resultats qu'on a obtenu avec un calcul manuel
 
+<div align="center"><strong>on remarque que ce sont les memes resultats qu'on a obtenu avec un calcul manuel</strong></div>
