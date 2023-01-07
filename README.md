@@ -84,4 +84,58 @@ rle('lena.tif')
   image      256x256             65536  logical   
 ```
 les resultats de la compression de l'image **'lena.tif'** en utilisant le codage **RLE** indiquent la taille de l image avant et apres compression , l image avant compression est une image de **256x256** pixels, qui occupe **65536** octets en mémoire. apres avoir utiliser le codage rle la variable **arr** a une taille de **1x4401**, ce qui signifie qu'elle occupe 8802 octets en mémoire
-- **Le taux de compression = 65536/8802 = 7.4456** soit **744.56 %**
+# Codage ARITHMETIQUE et d'HUFFMAN
+
+<div align="center"><strong>f=[ 1 1 2 1 ; 3 2 4 2 ]</strong></div>
+<div align="center"><strong>f=[ f ; 1 1 2 1 ; 3 2 4 2 ]</strong></div>
+
+## entropy
+on commence par calculer manuellement l entropie de cette matrice
+on trouve que :
+- probabilite que **x = 1** est **p1 = 0,375**
+- probabilite que **x = 2** est **p2 = 0,375**
+- probabilite que **x = 3** est **p3 = 0,125**
+- probabilite que **x = 4** est **p4 = 0,125** 
+- l entropie est h = 1,8112
+On applique lafonction **entropy** a cette matrice
+```matlab
+>>f=[ 1 1 2 1 ; 3 2 4 2 ]
+>>f=[ f ; 1 1 2 1 ; 3 2 4 2 ]
+>>[h p]=entropy(f,4)
+```
+resultas :
+```matlab
+>> f=[ 1 1 2 1 ; 3 2 4 2 ]
+
+f =
+
+     1     1     2     1
+     3     2     4     2
+
+>> f=[ f ; 1 1 2 1 ; 3 2 4 2 ]
+
+f =
+
+     1     1     2     1
+     3     2     4     2
+     1     1     2     1
+     3     2     4     2
+
+>> [h p]=entropy(f,4)
+
+p =
+
+    0.3750    0.3750    0.1250    0.1250
+
+
+h =
+
+    1.8113
+
+
+p =
+
+    0.3750    0.3750    0.1250    0.1250
+```
+on remarque que ce sont les memes resultats qu'on a obtenu avec un calcul manuel
+
