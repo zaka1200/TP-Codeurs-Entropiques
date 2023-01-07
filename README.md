@@ -164,3 +164,12 @@ l =
 <div align="center"><strong>c represente les codes et l represente la longueur moyenne</strong></div>
 
 <div align="center"><strong>en utilisant un codage simple on aurait besoin de 2 bits pour coder chaque elements de notre matrice mais avec le codage huffman nous avant pu deminuer cette longueur a 1,875 </strong></div>
+
+## Application a une image
+
+maintenant on va appliquer les memes fonction et refaire le meme travail que pour la matrice f
+on commence par le calcul d entropy
+```matlab
+
+
+```
