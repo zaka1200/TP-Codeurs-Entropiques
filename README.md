@@ -1,5 +1,11 @@
 # TP-Codeurs-Entropiques
+L’objectif de ce TP est de parcourir les différentes étapes du codage et du décodageRLE, Arithmetique, HUFFMANN, et LZW
 # Run Length Encoding
+Pour ce faite nous n’utiliserons pas les règles classiques données auparavant pour codage RLE, nous allons tous simplement compter le nombre de ‘0’ , puis des ‘1’, puis des ‘0’, puis des ‘1’ et ainsi de suite jusqu’à la fins de l’image.
+L’image doit être tout d’abords réécrite en un vecteur ligne (ou colonne) de longueur le nombre total d’éléments de l’image soit NXM (N et M étant les dimensions de l’image). 
+On commence par chercher le nombre des ‘0 au début du vecteur.
+le vecteur ne contient que des ‘0’, dans ce cas, pas de ‘1’ trouvés et nous aurons atteint la fin du vecteur. Le résultats du codage sera la longueur du vecteur ; soit L On trouve un ‘1’, on détermine sa position P, le nombre de ‘0’ avant cette position est donné par P-1. Ensuite on va chercher le nombre de ‘1’ qui suivent par le même procédé puis le nombre de ‘0’ et ainsi de suite jusqu’à la fin du vecteur.
+
 
 ```matlab
 function arr=rle(I)
@@ -25,7 +31,7 @@ arr=uint16(arr)
 image=uint16(image)
 whos image arr
 ```
-on commence par lire notre image en utilisonsla fonction **imread** 
+on commence par lire notre image en utilisant la fonction **imread()** 
 ```matlab
 image=imread('lena.tif');
 ```
