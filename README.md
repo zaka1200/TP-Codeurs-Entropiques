@@ -139,3 +139,26 @@ p =
 ```
 
 <div align="center"><strong>on remarque que ce sont les memes resultats qu'on a obtenu avec un calcul manuel</strong></div>
+
+## Huffman
+on applique la fonction de **huffmanim()** a cette matrice pour avoir les codes et la longueur moyenne
+```matlab
+>> [c l] = huffmanim(hist(f(:),4))
+```
+resultats :
+```matlab
+c =
+
+  4×1 cell array
+
+    {'01' }
+    {'1'  }
+    {'000'}
+    {'001'}
+
+
+l =
+
+    1.8750
+```
+<div align="center"><strong>c represente les codes et l represente la longueur moyenne</strong></div>
