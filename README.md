@@ -293,6 +293,7 @@ p =
 <div align="center"><strong>l'entropie est 7,5791</strong></div>
 ## huffmanim
 on applique la fonction **huffmanim()** , on obtient les resultats suivants :
+
 ```matlab
 l =
 
@@ -301,9 +302,17 @@ l =
 la longueur moyenne nous montre qu on a besoin de 7,6055 bits pour coder un elemnent de cette image en utilisant le codage dea **Huffman**
 
 ## Application a un texte
+
 on commence par creer un fichie texte **seq1.txt**
-```
+```matlab
 ZZZZZAAAASSSSSSRRRRR
 ```
+le code suivant lira le fichier , la variable arr contiert notre texte
 
+```matlab
+file1=fopen('seq.txt','r');
+arr=fread(file1,'*char');
+fclose(file1);
+arr=reshape(arr,1,length(arr));
+```
 
