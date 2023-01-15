@@ -518,7 +518,7 @@ strvcat(table{257:end})
 
 resultat:
 
-<div align="center"><strong>le nouveaux dictionnaire</strong></div>
+<div align="center"><strong>le nouveau dictionnaire</strong></div>
 
 ```matlab
   10×3 char array
@@ -534,3 +534,5 @@ resultat:
     'KAA'
     'AAE'
 ```
+
+# FIN
