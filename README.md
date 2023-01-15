@@ -165,6 +165,45 @@ l =
 
 <div align="center"><strong>en utilisant un codage simple on aurait besoin de 2 bits pour coder chaque elements de notre matrice mais avec le codage huffman nous avant pu deminuer cette longueur a 1,875 </strong></div>
 
+```matlab
+fc  =
+    '1'
+    '000'
+    '1'
+    '000'
+    '1'
+    '01'
+    '1'
+    '01'
+    '1'
+    '1'
+    '1'
+    '1'
+    '01'
+    '001'
+    '01'
+    '001'
+>> h2f2 = char(fc)
+h2f2 =
+
+1
+000
+1
+000
+1
+01
+1
+01
+1
+1
+1
+1
+01
+001
+01
+001
+```
+
 ## Application a une image
 
 maintenant on va appliquer les memes fonction et refaire le meme travail que pour la matrice f
@@ -315,4 +354,119 @@ arr=fread(file1,'*char');
 fclose(file1);
 arr=reshape(arr,1,length(arr));
 ```
+maintenant an va creer la fonction qui calcule les frequences des lettres de la sequence .
+```matlab
+function calculate_frequency(file_in, file_out)
+    text = fileread(file_in);
+    frequency = zeros(1,256);
+    for i = 1:length(text)
+        frequency(uint8(text(i))+1) = frequency(uint8(text(i))+1) + 1;
+    end
+    frequency = frequency / sum(frequency);
+    fileID = fopen(file_out,'w');
+    for i = 1:256
+        if(frequency(i)~=0)
+            fprintf(fileID,'%s %f\n',char(i-1),frequency(i));
+        end
+    end
+    fclose(fileID);
+end
+```
+- lire le fichier text
+```matlab
+text = fileread(file_in);
+```
+- Initialiser le tableau de fréquences
+```matlab
+frequency = zeros(1,256);
+```
+- Incrémenter l'élément correspondant dans le tableau de fréquence
+```matlab
+ frequency(uint8(text(i))+1) = frequency(uint8(text(i))+1) + 1;
+```
+- Normaliser le tableau de fréquences
+```matlab
+frequency = frequency / sum(frequency);
+```
+- Parcourez chaque élément du tableau de fréquences et écrivez le caractère et sa fréquence dans le fichier de sortie
+```matlab
+for i = 1:256
+        if(frequency(i)~=0)
+            fprintf(fileID,'%s %f\n',char(i-1),frequency(i));
+        end
+    end
+```
+resultats :
+```txt
+A 0.250000
+B 0.200000
+R 0.150000
+S 0.200000
+Z 0.200000
+```
+on applique la focntion **imhist** a la sequence numerique
+```matlab
+imhist(uint8('seq.txt'))
+```
+resultat :
+![untitled](https://user-images.githubusercontent.com/121964432/212541677-26510ef3-1d7b-484c-a3c3-0e3b4b40ce75.jpg)
+on applique la fonction huff sur le fichier text seq 
+> d'abord on doit ajouter cette ligne de code don le fichier **huff.m** 
+```matlab
+[long,lar]=size(seq)
+```
+```matlab
+decseq=huffdecode(huf,encseq)
+   [long,lar]=size(seq)
+  gf=[];
+  for ii=1:long
+   gf=[gf decseq(ii:ii+lar-1)];
+  end
+   disp(' Séquence Décodée :');
+     disp(str2num(gf))
+     disp(decseq);
+```
+Cette fonction prend deux arguments d'entrée : un nom de fichier pour le fichier texte d'entrée (par exemple, "exemple.txt") et un nom de fichier pour le fichier de fréquence de sortie (par exemple, "fréquences.txt").
+Il lit le fichier texte d'entrée en utilisant la fonction fileread(), puis boucle sur chaque caractère du texte et compte la fréquence de chaque caractère en utilisant la même méthode que précédemment.
+Ensuite, elle ouvre le fichier de sortie à l'aide de la fonction fopen(), en spécifiant qu'il doit être ouvert en écriture.
+Ensuite, il boucle sur chaque élément du tableau de fréquence et écrit le caractère et sa fréquence dans le fichier de sortie en utilisant la fonction fprintf().
+Enfin, il ferme le fichier de sortie à l'aide de la fonction fclose().
 
+Ainsi, la fréquence de chaque caractère du fichier d'entrée sera enregistrée dans le fichier de sortie sous forme de tableau, chaque ligne contenant un caractère et sa fréquence correspondante.
+
+resultats de la fonction huff sur notre fichier text
+```matlab
+huff = 
+
+  1×5 struct array with fields:
+
+    sym
+    prob
+    code
+
+    {'A :0.25 :10'}
+
+    {'B :0.2 :00'}
+
+    {'S :0.2 :01'}
+
+    {'R :0.15 :111'}
+
+    {'Z :0.2 :110'}
+```
+<div align="center"><strong>le codage huffman des 5 caracteres</strong></div>
+```matlab
+Entropie =2.3037
+```
+<div align="center"><strong>l entropie est egale a 2.3037</strong></div>
+```matlab
+Longmoyen =2.35
+```
+<div align="center"><strong>la longueur moyenne est egale a 2,35</strong></div>
+```matlab
+Séquence  de départ:
+AAABBSSSASRRRZZZZBBA
+Séquence codée :
+10101000000101011001111111111110110110110000010
+```
+<div align="center"><strong>la sequence avant et apres codage</strong></div>
