@@ -473,6 +473,8 @@ Longmoyen =2.35
 
 
 <div align="center"><strong>la sequence avant et apres codage</strong></div>
+
+
 ```matlab
 Séquence  de départ:
 AAABBSSSASRRRZZZZBBA
@@ -480,4 +482,55 @@ Séquence codée :
 10101000000101011001111111111110110110110000010
 ```
 
+# LZW
 
+L'algorithme de compression LZW (Lempel-Ziv-Welch) fonctionne de la manière suivante :
+
+- Initialiser un dictionnaire vide.
+- Lire la chaîne d'entrée, caractère par caractère.
+- Si le caractère est déjà dans le dictionnaire, l'ajouter à une chaîne temporaire et continuer à lire la chaîne d'entrée.
+- Si le caractère n'est pas dans le dictionnaire, sortir le code de la chaîne temporaire et ajouter une nouvelle entrée au dictionnaire avec la chaîne temporaire suivie du caractère.
+- Répéter les étapes 3 et 4 jusqu'à ce que la fin de la chaîne d'entrée soit atteinte.
+
+Pour décoder les données compressées, le décodeur utilise le même dictionnaire que l'encodeur et lit les données compressées, code par code. Pour chaque code, il cherche la chaîne correspondante dans le dictionnaire et la sort. S'il rencontre un nouveau code qui n'est pas dans le dictionnaire, il ajoute une nouvelle entrée au dictionnaire en utilisant le code précédent comme préfixe et le prochain caractère dans les données compressées comme suffixe.
+
+```matlab
+%LZW DEMO 1
+%message à coder
+str = 'ZAZAKAARIKAAAE';
+
+% codage
+[packed,table]=norm2lzw(uint8(str));
+
+% decodage
+[unpacked,table]=lzw2norm(packed);
+
+% réecriture en carctère
+display(' message de depart');str
+display(' message decodé.......'); unpacked = char(unpacked)
+
+% test et compraison
+isOK = strcmp(str,unpacked)
+
+% le nouveaux dictionnaire
+strvcat(table{257:end})
+```
+
+resultat:
+
+<div align="center"><strong>le nouveaux dictionnaire</strong></div>
+
+```matlab
+  10×3 char array
+
+    'ZA '
+    'AZ '
+    'ZAK'
+    'KA '
+    'AA '
+    'AR '
+    'RI '
+    'IK '
+    'KAA'
+    'AAE'
+```
