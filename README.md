@@ -344,7 +344,7 @@ la longueur moyenne nous montre qu on a besoin de 7,6055 bits pour coder un elem
 
 on commence par creer un fichie texte **seq1.txt**
 ```matlab
-ZZZZZAAAASSSSSSRRRRR
+AAABBSSSASRRRZZZZBBA
 ```
 le code suivant lira le fichier , la variable arr contiert notre texte
 
@@ -454,19 +454,27 @@ huff =
 
     {'Z :0.2 :110'}
 ```
+
 <div align="center"><strong>le codage huffman des 5 caracteres</strong></div>
+
 ```matlab
 Entropie =2.3037
 ```
+
 <div align="center"><strong>l entropie est egale a 2.3037</strong></div>
+
+
 ```matlab
 Longmoyen =2.35
 ```
+
 <div align="center"><strong>la longueur moyenne est egale a 2,35</strong></div>
+
 ```matlab
 Séquence  de départ:
 AAABBSSSASRRRZZZZBBA
 Séquence codée :
 10101000000101011001111111111110110110110000010
 ```
+
 <div align="center"><strong>la sequence avant et apres codage</strong></div>
