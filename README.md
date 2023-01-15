@@ -434,7 +434,10 @@ Enfin, il ferme le fichier de sortie à l'aide de la fonction fclose().
 
 Ainsi, la fréquence de chaque caractère du fichier d'entrée sera enregistrée dans le fichier de sortie sous forme de tableau, chaque ligne contenant un caractère et sa fréquence correspondante.
 
-resultats de la fonction huff sur notre fichier text
+resultats de la fonction huff sur notre fichier text:
+
+<div align="center"><strong>le codage huffman des 5 caracteres</strong></div>
+
 ```matlab
 huff = 
 
@@ -455,21 +458,21 @@ huff =
     {'Z :0.2 :110'}
 ```
 
-<div align="center"><strong>le codage huffman des 5 caracteres</strong></div>
+<div align="center"><strong>l entropie est egale a 2.3037</strong></div>
+
 
 ```matlab
 Entropie =2.3037
 ```
 
-<div align="center"><strong>l entropie est egale a 2.3037</strong></div>
-
+<div align="center"><strong>la longueur moyenne est egale a 2,35</strong></div>
 
 ```matlab
 Longmoyen =2.35
 ```
 
-<div align="center"><strong>la longueur moyenne est egale a 2,35</strong></div>
 
+<div align="center"><strong>la sequence avant et apres codage</strong></div>
 ```matlab
 Séquence  de départ:
 AAABBSSSASRRRZZZZBBA
@@ -477,4 +480,4 @@ Séquence codée :
 10101000000101011001111111111110110110110000010
 ```
 
-<div align="center"><strong>la sequence avant et apres codage</strong></div>
+
