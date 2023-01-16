@@ -535,4 +535,19 @@ resultat:
     'AAE'
 ```
 
+La fonction norm2lzw est utilisée pour compresser les données d'entrée, une chaîne appelée "str", en utilisant une fonction appelée uint8 pour convertir cette chaîne en un tableau d'entiers uint8. Le résultat de cette compression est une série de données compressées et un dictionnaire. Le décodeur, lzw2norm, est utilisé pour décompresser ces données compressées pour retourner à la chaîne originale. Ces deux chaînes sont comparées pour vérifier si elles sont identiques, et si c'est le cas, la variable isOK est définie sur true. Enfin, le dictionnaire est affiché en concaténant les entrées de l'index 257 jusqu'à la fin du tableau en utilisant la fonction strvcat.
+La fonction norm2lzw est une fonction d'encodage LZW qui prend en entrée un vecteur uint8 appelé "vector" et retourne un vecteur uint16 appelé "output" ainsi qu'un dictionnaire de chaînes de caractères appelé "table". La fonction vérifie que l'entrée est bien de type uint8, sinon une erreur est générée. Le vecteur d'entrée est ensuite transposé pour devenir une ligne, converti en uint16 et le dictionnaire "table" est initialisé avec les 256 caractères ASCII. La sortie "output" est initialisée comme étant égale à vector.
+La fonction norm2lzw utilise un algorithme LZW pour compresser un vecteur uint8 appelé "vector" en un vecteur uint16 appelé "output" ainsi qu'un dictionnaire de chaînes de caractères appelé "table". Elle vérifie d'abord que l'entrée est bien de type uint8, sinon une erreur est générée. Le vecteur est ensuite transposé, converti en uint16 et le dictionnaire "table" est initialisé avec les 256 caractères ASCII. La boucle for principale parcourt le vecteur vector à partir de l'élément d'index 2 jusqu'à la fin. Pour chaque itération, la fonction getcodefor est appelée avec un sous-vecteur et un élément en entrée et retourne le code associé à cette chaîne dans le dictionnaire table. Si ce code est vide, cela signifie que la chaîne n'a pas encore été ajoutée au dictionnaire, donc la sortie output est mise à jour et le dictionnaire est mis à jour en ajoutant cette nouvelle entrée. Sinon, la boucle continue simplement sans mettre à jour la sortie ni le dictionnaire. À la fin de la boucle, la sortie output est mise à jour pour inclure le dernier code associé à substr et les éléments de la sortie output qui ne sont pas utilisés sont supprimés. La fonction lzw2norm est utilisée pour décompresser les données compressées. Elle utilise un algorithme LZW pour décompresser un vecteur uint16 appelé "vector" en un vecteur uint8 appelé "output" ainsi qu'un dictionnaire de chaînes de caractères appelé "table". Elle vérifie d'abord que l'entrée est bien de type uint16, sinon une erreur est générée. Le vecteur est ensuite transposé, le dictionnaire "table" est initialisé avec les 256 caractères ASCII et la sortie "output" est initialisée comme étant vide.
+
+```matlab
+Name    Size        Bytes  Class      Attributes
+packed  1x16           32  unit16     
+str     1x20           40  char
+```
+
+- La taille de la chaîne d'entrée str avant codage est de 20 caractères.
+- La taille du message codé packed est de 16 éléments de type uint16, ce qui 
+- correspond à 32 octets.
+- La taille du message décodé unpacked est de 20 caractères
+
 # FIN
