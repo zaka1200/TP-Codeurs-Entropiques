@@ -489,6 +489,52 @@ Séquence codée :
 10101000000101011001111111111110110110110000010
 ```
 
+## codage arithmetique
+
+Le codage arithmétique est un codage entropique utilisé en compression de données sans perte. Il permet une meilleure compression que le codage de Huffman
+
+```matlab
+function arithint()
+clc;
+fid=fopen('seq.txt','r');
+seq=fread(fid,'*char');
+fclose(fid);
+seq=reshape(seq,1,length(seq));
+[alpha cnt]=countmodel(seq);
+if ~isempty(alpha)
+    btag=arithintcod(alpha,cnt,seq);
+    disp(strcat('Tag =',btag));
+    seq=arithintdecod(btag,alpha,cnt,length(seq));
+    disp('Sequence = ');
+    disp(seq);
+else
+    display('Empty Sequence....');
+end
+end  
+```
+
+> Ce code est une fonction Matlab appelée "arithint" qui utilise la technique de codage arithmétique pour encoder et décoder une séquence de données.
+
+- on utilise la fonction built-in "fopen" pour ouvrir un fichier texte nommé "seq.txt" en mode lecture.
+- La fonction "fread" est ensuite utilisée pour lire le contenu du fichier et le stocker dans la variable "seq". 
+- Le fichier est ensuite fermé en utilisant la fonction "fclose".
+- La séquence est ensuite remodelée en utilisant la fonction "reshape" pour s'adapter à la taille appropriée.
+- La fonction "countmodel" est utilisée pour compter le nombre d'occurrences de chaque valeur unique dans la séquence "seq" et stocker les valeurs uniques et leurs comptes respectifs dans les tableaux "alpha" et "cnt" respectivement.
+- Si la séquence n'est pas vide, la fonction "arithintcod" est utilisée pour encoder la séquence en utilisant les tableaux "alpha" et "cnt" et le résultat est stocké dans la variable "btag". 
+- La fonction "arithintdecod" est ensuite utilisée pour décoder "btag" en utilisant les mêmes tableaux "alpha" et "cnt" ainsi que la longueur de la séquence d'origine. 
+- Le résultat décodé est affiché à l'utilisateur.
+- Si la séquence est vide, le message "Empty Sequence...." est affiché.
+
+resultats :
+
+```matlab
+Tag =00000000110010011010100000111000001101110111011100011010110100000
+Sequence = 
+AAABBSSSASRRRZZZZBBA
+```
+
+En résumé, cette fonction utilise la technique de codage arithmétique pour encoder et décoder une séquence de données en utilisant des fonctions dédiées pour compter le nombre d'occurrences de chaque valeur unique dans la séquence et pour encoder et décoder la séquence. Les résultats encodés et décodés sont affichés à l'utilisateur.
+
 # LZW
 
 L'algorithme de compression LZW (Lempel-Ziv-Welch) fonctionne de la manière suivante :
