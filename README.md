@@ -330,7 +330,9 @@ p =
 ```
 
 <div align="center"><strong>l'entropie est 7,5791</strong></div>
+
 ## huffmanim
+
 on applique la fonction **huffmanim()** , on obtient les resultats suivants :
 
 ```matlab
@@ -409,9 +411,14 @@ on applique la focntion **imhist** a la sequence numerique
 imhist(uint8('seq.txt'))
 ```
 resultat :
-![untitled](https://user-images.githubusercontent.com/121964432/212541677-26510ef3-1d7b-484c-a3c3-0e3b4b40ce75.jpg)
+
+
+![WhatsApp Image 2023-01-16 at 9 47 23 PM](https://user-images.githubusercontent.com/121964432/212763455-f815b36c-7cf9-4a4b-b388-2dd0e4ce976c.jpeg)
+
 on applique la fonction huff sur le fichier text seq 
+
 > d'abord on doit ajouter cette ligne de code don le fichier **huff.m** 
+
 ```matlab
 [long,lar]=size(seq)
 ```
